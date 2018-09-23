@@ -1,0 +1,278 @@
+[options]
+#allow_bold = true
+#audible_bell = false
+#clickable_url = true
+#dynamic_title = true
+#font = Monospace 16
+font = Hack 16
+#fullscreen = true
+#geometry = 640x480
+#icon_name = terminal
+#mouse_autohide = false
+#scroll_on_output = false
+#scroll_on_keystroke = true
+# Length of the scrollback buffer, 0 disabled the scrollback buffer
+# and setting it to a negative value means "infinite scrollback"
+scrollback_lines = 10000
+#search_wrap = true
+#urgent_on_bell = true
+#hyperlinks = false
+
+# $BROWSER is used by default if set, with xdg-open as a fallback
+#browser = xdg-open
+
+# "system", "on" or "off"
+#cursor_blink = system
+
+# "block", "underline" or "ibeam"
+#cursor_shape = block
+
+# Hide links that are no longer valid in url select overlay mode
+#filter_unmatched_urls = true
+
+# Emit escape sequences for extra modified keys
+#modify_other_keys = false
+
+# set size hints for the window
+#size_hints = false
+
+# "off", "left" or "right"
+#scrollbar = off
+
+[colors]
+# If both of these are unset, cursor falls back to the foreground color,
+# and cursor_foreground falls back to the background color.
+#cursor = #dcdccc
+#cursor_foreground = #dcdccc
+
+#foreground = #dcdccc
+#foreground_bold = #ffffff
+#background = #3f3f3f
+
+# 20% background transparency (requires a compositor)
+#background = rgba(63, 63, 63, 0.9)
+
+# If unset, will reverse foreground and background
+#highlight = #2f2f2f
+
+# Colors from color0 to color254 can be set
+#color0 = #3f3f3f
+#color1 = #705050
+#color2 = #60b48a
+#color3 = #dfaf8f
+#color4 = #506070
+#color5 = #dc8cc3
+#color6 = #8cd0d3
+#color7 = #dcdccc
+#color8 = #709080
+#color9 = #dca3a3
+#color10 = #c3bf9f
+#color11 = #f0dfaf
+#color12 = #94bff3
+#color13 = #ec93d3
+#color14 = #93e0e3
+#color15 = #ffffff
+
+
+## special
+#foreground      = #c5c8c6
+#foreground_bold = #c5c8c6
+#cursor          = #c5c8c6
+##background      = #1d1f21
+#background      = rgba(29, 31, 33, 0.8)
+#
+## black
+#color0  = #282a2e
+#color8  = #373b41
+#
+## red
+#color1  = #a54242
+#color9  = #cc6666
+#
+## green
+#color2  = #8c9440
+#color10 = #b5bd68
+#
+## yellow
+#color3  = #de935f
+#color11 = #f0c674
+#
+## blue
+#color4  = #5f819d
+#color12 = #81a2be
+#
+## magenta
+#color5  = #85678f
+#color13 = #b294bb
+#
+## cyan
+#color6  = #5e8d87
+#color14 = #8abeb7
+#
+## white
+#color7  = #707880
+#color15 = #c5c8c6
+
+
+########## BASE16-ocean-dark
+## Base16 Ocean
+## Scheme: Chris Kempson (http://chriskempson.com)
+#
+#foreground      = #c0c5ce
+#foreground_bold = #c0c5ce
+#cursor          = #c0c5ce
+#background      = #2b303b
+#background      = rgba(43, 48, 59, 0.8)
+#
+## 16 color space
+#color0  = #2b303b
+#color1  = #bf616a
+#color2  = #a3be8c
+#color3  = #ebcb8b
+#color4  = #8fa1b3
+#color5  = #b48ead
+#color6  = #96b5b4
+#color7  = #c0c5ce
+#color8  = #65737e
+#color9  = #bf616a
+#color10 = #a3be8c
+#color11 = #ebcb8b
+#color12 = #8fa1b3
+#color13 = #b48ead
+#color14 = #96b5b4
+#color15 = #eff1f5
+#
+## 256 color space
+#color16 = #d08770
+#color17 = #ab7967
+#color18 = #343d46
+#color19 = #4f5b66
+#color20 = #a7adba
+#color21 = #dfe1e8
+#
+########## BASE16-ocean-dark
+
+############ GRUVBOX
+# hard contrast: background = #1d2021
+#background = #282828
+background = rgba(40, 40, 40, 0.8)
+# soft contrast: background = #32302f
+foreground = #ebdbb2
+foreground_bold = #ebdbb2
+
+# dark0 + gray
+color0 = #282828
+color8 = #928374
+
+# neutral_red + bright_red
+color1 = #cc241d
+color9 = #fb4934
+
+# neutral_green + bright_green
+color2 = #98971a
+color10 = #b8bb26
+
+# neutral_yellow + bright_yellow
+color3 = #d79921
+color11 = #fabd2f
+
+# neutral_blue + bright_blue
+color4 = #458588
+color12 = #83a598
+
+# neutral_purple + bright_purple
+color5 = #b16286
+color13 = #d3869b
+
+# neutral_aqua + faded_aqua
+color6 = #689d6a
+color14 = #8ec07c
+
+# light4 + light1
+color7 = #a89984
+color15 = #ebdbb2
+
+# vim: ft=dosini cms=#%s
+############ GRUVBOX
+
+
+ 
+# From urxvt
+#color0 = #31363b
+#color1 = #ed2929
+#color2 = #21d96d
+#color3 = #fcc74c
+#color4 = #3daee9
+#color5 = #9847b5
+#color6 = #1abc9c
+#color7 = #eff0f1
+#color8 = #4d4d4d
+#color9 = #ed1515
+#color10 = #0bd961
+#color11 = #fde04b
+#color12 = #3d95e9
+#color13 = #a94fc9
+#color14 = #1cdc9a
+#color15 = #fcfcfc
+#
+[hints]
+#font = Monospace 12
+#foreground = #dcdccc
+#background = #3f3f3f
+#active_foreground = #e68080
+#active_background = #3f3f3f
+#padding = 2
+#border = #3f3f3f
+#border_width = 0.5
+#roundness = 2.0
+
+# vim: ft=dosini cms=#%s
+[colors]
+# Base16 Default Dark
+# Author: Chris Kempson (http://chriskempson.com)
+
+foreground          = #d8d8d8
+foreground_bold     = #e8e8e8
+cursor              = #e8e8e8
+cursor_foreground   = #181818
+background          = rgba(24, 24, 24)
+
+# 16 color space
+
+# Black, Gray, Silver, White
+color0  = #181818
+color8  = #585858
+color7  = #d8d8d8
+color15 = #f8f8f8
+
+# Red
+color1  = #ab4642
+color9  = #ab4642
+
+# Green
+color2  = #a1b56c
+color10 = #a1b56c
+
+# Yellow
+color3  = #f7ca88
+color11 = #f7ca88
+
+# Blue
+color4  = #7cafc2
+color12 = #7cafc2
+
+# Purple
+color5  = #ba8baf
+color13 = #ba8baf
+
+# Teal
+color6  = #86c1b9
+color14 = #86c1b9
+
+# Extra colors
+color16 = #dc9656
+color17 = #a16946
+color18 = #282828
+color19 = #383838
+color20 = #b8b8b8
+color21 = #e8e8e8
