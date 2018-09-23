@@ -9,7 +9,11 @@ done
 for i in $(find ${thisDir}/config/* -type d);
 do
 	linkTo=$(readlink -f $i)
-	echo $linkTo
 	ln -sv $linkTo ~/.config
 done
 ln -sv ~/.config/tmux/tmux.conf ~/.tmux.conf
+
+OHMYDIR=~/.oh-my-zsh
+if [ ! -d "$OHMYDIR" ]; then
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
