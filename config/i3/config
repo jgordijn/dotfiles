@@ -187,6 +187,7 @@ set $lock i3lock -n -i /home/jgordijn/Pictures/lock.png
 bindsym $mod+Shift+x exec $lock
 exec --no-startup-id xautolock -time 4 -locker "$lock"
 exec --no-startup-id xss-lock -- $lock
+exec --no-startup-id redshift -l 52.27115:5.13729
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -292,8 +293,10 @@ bindsym $mod+n exec "/usr/bin/thunar"
 #bindsym $mod+m exec "/usr/local/bin/switch-audio-port"
 mode "monitor" {
         bindsym a exec "xrandr --auto"
-        bindsym r exec "xrandr --output HDMI2 --primary --right-of eDP1"
-        bindsym l exec "xrandr --output HDMI2 --primary --left-of eDP1"
+        bindsym w exec "xrandr --output HDMI2 --primary --left-of eDP1"
+        bindsym Left exec "xrandr --output HDMI2 --primary --left-of eDP1"
+        bindsym Right exec "xrandr --output HDMI2 --primary --right-of eDP1"
+        bindsym t exec "xrandr --output DP2 --primary --right-of eDP1"
         # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"

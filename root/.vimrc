@@ -3,6 +3,10 @@ set wildmenu
 set mouse=a
 set clipboard=unnamedplus
 set ts=4
+set sw=4
+set number relativenumber
+
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 
 call plug#begin('~/.vim/plugged')
 " Colors for themes
