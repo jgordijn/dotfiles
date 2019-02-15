@@ -5,6 +5,8 @@ set clipboard=unnamedplus
 set ts=4
 set sw=4
 set number relativenumber
+set ignorecase
+set smartcase
 
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 

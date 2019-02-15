@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$PATH:$HOME/go/bin
 
 # Path to your oh-my-zsh installation.
   export ZSH="/home/jgordijn/.oh-my-zsh"
@@ -89,6 +89,7 @@ zstyle ':completion:*' rehash true
 alias vi=vim
 alias vim=nvim
 export EDITOR=vim
+export BROWSER=/usr/bin/firefox
 export KUBECONFIG=/home/jgordijn/.bluemix/plugins/container-service/clusters/harold-dev/kube-config-lon04-harold-dev.yml
 
 
