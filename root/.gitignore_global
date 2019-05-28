@@ -90,3 +90,4 @@ atlassian-ide-plugin.xml
 .ensime*
 
 local/*
+venv
