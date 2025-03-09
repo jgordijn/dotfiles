@@ -1,7 +1,7 @@
 [user]
     name = Jeroen Gordijn
     email = jeroen.gordijn@gmail.com
-	signingkey = 5D9EE4F6042FD892
+    signingkey = 5D9EE4F6042FD892
 [color]
     ui= auto
     status = auto

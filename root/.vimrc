@@ -1,12 +1,13 @@
 set expandtab
 set wildmenu
 set mouse=a
-set clipboard=unnamedplus
+"set clipboard=unnamedplus
 set ts=4
 set sw=4
 set number relativenumber
 set ignorecase
 set smartcase
+set directory=$HOME/.vim/swapfiles//
 
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 
@@ -98,7 +99,7 @@ let g:go_highlight_generate_tags = 1
 
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 
 autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-set foldmethod=syntax
+" set foldmethod=syntax
 
 " GO END
 

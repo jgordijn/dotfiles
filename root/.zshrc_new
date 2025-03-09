@@ -1,0 +1,182 @@
+# For profiling this should be at the top
+# zmodload zsh/zprof
+PROMPTER="starship"
+
+export PATH=$HOME/bin:$PATH
+export ZSH_CONFIGS=$HOME/zsh
+export DOTFILES=$HOME/dotfiles/config/zsh
+export CUSTOM_ZSH_FUNCTIONS=$DOTFILES/scripts
+export PLUGINS_DIR=$HOME/.config/zsh/plugins
+
+# Own plugin manager
+source $DOTFILES/plugin_manager.zsh
+
+# Plugins:
+zsh_add_plugin "Aloxaf/fzf-tab"
+zsh_add_plugin "zsh-users/zsh-autosuggestions"
+zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+zsh_add_plugin "MichaelAquilina/zsh-you-should-use"
+
+# Via brew:
+# - fzf
+# - zoxide
+# - bat
+# - eza
+
+
+if [ "$PROMPTER" = "powerlevel10k" ]; then
+  # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+  # Initialization code that may require console input (password prompts, [y/n]
+  # confirmations, etc.) must go above this block; everything else may go below.
+  if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+  fi
+fi
+
+# 4. Initialize completion system (near the bottom)
+autoload -Uz compinit
+
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
+
+
+# Make sure completion cache is properly set up
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$HOME/.zcompcache"
+
+# Improve completion system reliability
+zstyle ':completion:*' completer _complete _approximate
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+# Completion options
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format '%F{green}%B--- %d ---%b%f'
+
+# This enables Zsh to understand commands like `docker run -it ubuntu`. However, by enabling this, this also
+# makes Zsh complete `docker run -u<tab>` with `docker run -uapprox` which is not valid. The users have to put
+# the space or the equal sign themselves before trying to complete.
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
+
+# allow to watch with aliases
+alias watch='watch '
+
+alias cat="bat -p"
+alias ls='ls --color=auto'
+alias vim='nvim'
+
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
+
+
+alias dps="docker ps"
+
+
+# Auto cd into directories
+setopt autocd
+
+
+# 3. Custom functions and key bindings
+# Refresh config with F5
+alias reload="exec zsh"
+bindkey -s "^[[15~" "reload^M"
+
+
+# Setup zoxide
+eval "$(zoxide init zsh)"
+
+# Create an improved zoxide interactive widget function
+zi-widget() {
+  # Save current buffer content
+  local BUFFER_BACKUP=$BUFFER
+  local CURSOR_BACKUP=$CURSOR
+  
+  # Clear the line to avoid confusion
+  BUFFER=""
+  zle redisplay
+  
+  # Run zoxide in interactive mode and get the result
+  local result=$(zoxide query -i)
+  
+  # If a directory was selected, change to it
+  if [ -n "$result" ]; then
+    cd "$result"
+    # Clear and redraw prompt via zle reset
+    zle reset-prompt
+  else
+    # If canceled, restore original command line
+    BUFFER=$BUFFER_BACKUP
+    CURSOR=$CURSOR_BACKUP
+    zle redisplay
+  fi
+}
+
+zi() {
+  local result=$(zoxide query -i "$@")
+  if [ -n "$result" ]; then
+    cd "$result" || return
+  fi
+}
+zf() {
+  local dir
+  dir=$(zoxide query -l | fzf --reverse --height 40% --preview 'ls -la {}')
+  if [ -n "$dir" ]; then
+    cd "$dir" || return
+  fi
+}
+
+# Create the widget
+zle -N zi-widget
+
+# Bind Ctrl+F to the widget
+bindkey '^F' zi-widget
+
+# Source my setup
+zshdir=$CUSTOM_ZSH_FUNCTIONS
+if [ -d $zshdir ]; then
+    pattern=".*/[0-9]+.*\.z?sh$"
+    files=$(find -E $zshdir -regex "$pattern"|sort)
+    for i in ${(f)files}; do # param extension flag 'f' strips newlines
+        if [ -r $i ]; then
+            source $i
+        fi
+    done
+    unset i
+fi
+unset zshdir files pattern
+
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+
+
+if [ "$PROMPTER" = "starship" ]; then
+    # ~~~ Starship ~~~
+    eval "$(starship init zsh)"
+elif [ "$PROMPTER" = "oh-my-posh" ]; then
+    # ~~~ Oh my posh ~~~
+    eval "$(oh-my-posh init zsh)"
+elif [ "$PROMPTER" = "powerlevel10k" ]; then
+    # ~~~ powerlevel10k ~~~
+    # p10k prompt (no longer maintained)
+    source $ZSH_CONFIGS/plugins/powerlevel10k/powerlevel10k.zsh-theme
+    # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+    [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+fi
+
+
+# For profiling. Put this at the end of the file
+# zprof
