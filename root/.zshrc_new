@@ -2,6 +2,10 @@
 # zmodload zsh/zprof
 PROMPTER="starship"
 
+if [[ "$TERM" == "xterm-ghostty" ]]; then
+  export TERM=xterm-256color
+fi
+
 export PATH=$HOME/bin:$PATH
 export ZSH_CONFIGS=$HOME/zsh
 export DOTFILES=$HOME/dotfiles/config/zsh
@@ -17,14 +21,11 @@ zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "MichaelAquilina/zsh-you-should-use"
 
-
-
 # Via brew:
 # - fzf
 # - zoxide
 # - bat
 # - eza
-
 
 if [ "$PROMPTER" = "powerlevel10k" ]; then
   # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -149,7 +150,11 @@ bindkey '^F' zi-widget
 zshdir=$CUSTOM_ZSH_FUNCTIONS
 if [ -d $zshdir ]; then
     pattern=".*/[0-9]+.*\.z?sh$"
-    files=$(find -E $zshdir -regex "$pattern"|sort)
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+      files=$(find -E $zshdir -regex "$pattern" | sort)
+    else
+      files=$(find $zshdir -regextype posix-extended -regex "$pattern" | sort)
+    fi
     for i in ${(f)files}; do # param extension flag 'f' strips newlines
         if [ -r $i ]; then
             source $i
