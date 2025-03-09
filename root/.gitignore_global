@@ -1,3 +1,17 @@
+# Ignore asdf config
+.tool-versions
+*.dtmp
+
+# metals 
+.bloop
+.metals
+.vscode
+project/metals.sbt
+project/project
+
+# VS code workspace settings
+*.code-workspace
+
 # Compiled source #
 ###################
 *.com
@@ -23,7 +37,6 @@
 # Logs and databases #
 ######################
 *.log
-*.sql
 *.sqlite
 
 # OS generated files #
@@ -43,6 +56,7 @@ Thumbs.db
 *.ipr
 *.iws
 .idea/
+.idea*
 
 # Fitnesse
 TestDir
@@ -91,3 +105,14 @@ atlassian-ide-plugin.xml
 
 local/*
 venv
+
+# ignore patch files
+*.patch
+
+.gradle
+bin
+build/
+
+.env-localhost
+.env-*
+

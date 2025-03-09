@@ -1,0 +1,50 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+ 
+right_format = "$kubernetes"
+
+
+# Replace the '❯' symbol in the prompt with '➜'
+[character] # The name of the module we are configuring is 'character'
+success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[git_status]
+
+[scala]
+disabled = true
+
+[directory]
+#truncate_to_repo = false
+#truncation_length = 5
+
+[kubernetes]
+disabled = false
+format = '[$context/$namespace]($style) '
+style = "dimmed green"
+# detect_files = ['k8s']
+
+[[kubernetes.contexts]]
+style = "dimmed green"
+
+[[kubernetes.contexts]]
+# "bold red" style + default symbol when Kubernetes current context name equals "production" *and* the current user
+# equals "admin_user"
+context_pattern = ".*prod.*"
+style = "bold red"
+context_alias = "prod"
+# user_alias = "admin"
+
+[[kubernetes.contexts]]
+# "bold red" style + default symbol when Kubernetes current context name equals "production" *and* the current user
+# equals "admin_user"
+context_pattern = ".*acc.*"
+style = "bold yellow"
+context_alias = "accept"
+# user_alias = "admin"
