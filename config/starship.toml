@@ -1,15 +1,29 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
+#right_format = "$kubernetes"
 # Inserts a blank line between shell prompts
 add_newline = true
- 
-right_format = "$kubernetes"
+format = "$directory$git_branch$git_state$git_status$java$nodejs$jobs$fill$azure$kubernetes$cmd_duration$status\n\r$os$sudo$character"
 
+[azure]
+disabled = true
+
+[fill]
+symbol = " "
+disabled = false
+
+[os]
+disabled = true
+
+[sudo]
+disabled = false
+format ="[$symbol]($style)"
 
 # Replace the '❯' symbol in the prompt with '➜'
 [character] # The name of the module we are configuring is 'character'
 success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
+error_symbol = '[✗](bold red)'
 
 # Disable the package module, hiding it from the prompt completely
 [package]
@@ -21,8 +35,8 @@ disabled = true
 disabled = true
 
 [directory]
-#truncate_to_repo = false
-#truncation_length = 5
+truncate_to_repo = false
+truncation_length = 50
 
 [kubernetes]
 disabled = false
