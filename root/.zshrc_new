@@ -71,7 +71,11 @@ zstyle ':completion:*:*:docker-*:*' option-stacking yes
 # allow to watch with aliases
 alias watch='watch '
 
-alias cat="bat -p"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	alias cat="bat -p"
+else
+	alias cat="batcat -p"
+fi
 alias ls='ls --color=auto'
 alias vim='nvim'
 
