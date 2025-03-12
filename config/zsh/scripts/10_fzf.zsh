@@ -1,5 +1,10 @@
 
-source <(fzf --zsh)
+if [[ "$(uname)" == "Darwin" ]]; then
+  # macOS version with -E
+  source <(fzf --zsh)
+else
+  source /usr/share/doc/fzf/examples/key-bindings.zsh
+fi
 
 export FZF_ALT_C_OPTS="
   --walker-skip .git,node_modules,target,.idea,.bsp,.metals,.bloop
