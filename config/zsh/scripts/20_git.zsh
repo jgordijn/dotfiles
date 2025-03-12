@@ -44,12 +44,19 @@ grp() {
 
 
 alias gf='git fetch'
+alias ga='git add'
 alias gl='git pull'
+alias gp='git push'
 alias gst='git status'
 alias gmom='git merge origin/$(git_main_branch)'
 alias gcm='git checkout $(git_main_branch)'
 alias gco='git checkout'
 alias gcb='git checkout -b'
+alias glog='git log --oneline --decorate --graph'
 # Go to root of the git repo
 alias grt='cd "$(git rev-parse --show-toplevel || echo .)"'
+alias gpf='git push --force-with-lease --force-if-includes'
+alias gd='git diff'
+
+
 
