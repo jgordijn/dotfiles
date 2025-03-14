@@ -6,6 +6,9 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help ta
 vim.keymap.set('n', '<leader>e', ':Explore<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>cd', ':cd %:p:h<CR>:pwd<CR>', { noremap = true })
 
+vim.keymap.set('n', '<leader>n', ":bnext<CR>", {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>b', ":bprevious<CR>", {noremap = true, silent = true})
+
 -- make clipboard accessible
 vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
 

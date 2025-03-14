@@ -3,8 +3,13 @@
 //
 
 keybinds clear-defaults=true {
+    unbind "Alt right"
+    unbind "^[f"
     locked {
         bind "Ctrl g" { SwitchToMode "normal"; }
+    }
+    normal {
+        unbind "Alt right"
     }
     pane {
         bind "left" { MoveFocus "left"; }
@@ -23,7 +28,7 @@ keybinds clear-defaults=true {
         bind "p" { SwitchFocus; }
         bind "Ctrl p" { SwitchToMode "normal"; }
         bind "r" { NewPane "right"; SwitchToMode "normal"; }
-        bind "w" { ToggleFloatingPanes; SwitchToMode "normal"; }
+	bind "w" { ToggleFloatingPanes; SwitchToMode "normal"; }
         bind "z" { TogglePaneFrames; SwitchToMode "normal"; }
     }
     tab {
@@ -138,7 +143,7 @@ keybinds clear-defaults=true {
         bind "Alt =" { Resize "Increase"; }
         bind "Alt [" { PreviousSwapLayout; }
         bind "Alt ]" { NextSwapLayout; }
-        bind "Alt f" { ToggleFloatingPanes; }
+        bind "Alt w" { ToggleFloatingPanes; }
         bind "Ctrl g" { SwitchToMode "locked"; }
         bind "Alt i" { MoveTab "left"; }
         bind "Alt n" { NewPane; }

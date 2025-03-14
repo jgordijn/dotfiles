@@ -2,6 +2,7 @@ vim.cmd('language en_US.UTF-8')
 
 require("config.lazy")
 require("config.keymaps")
+require("config.harpoon2")
 
 
 vim.cmd.colorscheme "catppuccin"
