@@ -24,3 +24,14 @@ bindkey "^[OA" history-beginning-search-backward-end
 bindkey "^[[B" history-beginning-search-forward-end
 bindkey "^[OB" history-beginning-search-forward-end
 
+# To make it work in VI
+bindkey -M vicmd "^[[A" history-beginning-search-backward-end
+bindkey -M vicmd "^[OA" history-beginning-search-backward-end
+bindkey -M vicmd "^[[B" history-beginning-search-forward-end
+bindkey -M vicmd "^[OB" history-beginning-search-forward-end
+
+bindkey -M viins "^[[A" history-beginning-search-backward-end
+bindkey -M viins "^[OA" history-beginning-search-backward-end
+bindkey -M viins "^[[B" history-beginning-search-forward-end
+bindkey -M viins "^[OB" history-beginning-search-forward-end
+

@@ -1,0 +1,6 @@
+// for LSP, such that nvim will not complain about missing vim object
+{
+  "diagnostics": {
+    "globals": ["vim"]
+  }
+}

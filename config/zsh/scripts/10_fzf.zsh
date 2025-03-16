@@ -5,7 +5,6 @@ if [[ "$(uname)" == "Darwin" ]]; then
 else
   source /usr/share/doc/fzf/examples/key-bindings.zsh
 fi
-
 export FZF_ALT_C_OPTS="
   --walker-skip .git,node_modules,target,.idea,.bsp,.metals,.bloop
   --preview 'tree -C {}'"
@@ -19,6 +18,7 @@ export FZF_CTRL_T_OPTS="
 bindkey -r '^T'
 # Bind to alt-t instead
 bindkey '\et' fzf-file-widget
+bindkey -M viins '\et' fzf-file-widget
 
 
 _fzf_comprun() {
@@ -32,6 +32,7 @@ _fzf_comprun() {
     *)            fzf --preview 'bat -n --color=always {}' "$@" ;;
   esac
 }
+
 
 
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.

@@ -16,7 +16,7 @@ function git_main_branch() {
 }
 
 # This function, `gro`, opens the current branch of a Git repository in the default web browser.
-gro () {
+grob () {
     local REMOTE="${1:-origin}"
     local CURRENT_BRANCH=`git branch --show-current`
     local BASE_URL=`git remote get-url "${REMOTE}" | sed 's|\.git$||' | sed -E 's;^(git@|https://);;' | sed 's|:|/|'`
@@ -27,6 +27,7 @@ gro () {
         open "https://${BASE_URL}/-/tree/${CURRENT_BRANCH}"\;
     fi
 }
+alias gro="gh pr view --web"
 
 # Open the main branch
 grm () {
@@ -36,7 +37,7 @@ grm () {
 }
 
 # Open the pull requests
-grp() {
+grps() {
     local REMOTE="${1:-origin}"
     local BASE_URL=`git remote get-url "${REMOTE}" | sed 's|\.git$||' | sed -E 's;^(git@|https://);;' | sed 's|:|/|'`
     open "https://${BASE_URL}/pulls"

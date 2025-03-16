@@ -15,11 +15,18 @@ export PLUGINS_DIR=$HOME/.config/zsh/plugins
 # Own plugin manager
 source $DOTFILES/plugin_manager.zsh
 
+export EDITOR=nvim
+export ZVM_LAZY_KEYBINDINGS=false
+ZVM_INIT_MODE=sourcing
+
+
 # Plugins:
 zsh_add_plugin "Aloxaf/fzf-tab"
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "MichaelAquilina/zsh-you-should-use"
+zsh_add_plugin "jeffreytse/zsh-vi-mode"
+
 
 # Via brew:
 # - fzf
@@ -93,7 +100,11 @@ alias dps="docker ps"
 
 # Auto cd into directories
 setopt autocd
-
+setopt AUTO_PUSHD           # Push the current directory visited on the stack.
+setopt PUSHD_IGNORE_DUPS    # Do not store duplicates in the stack.
+setopt PUSHD_SILENT         # Do not print the directory stack after pushd or popd.
+alias ds='dirs -v'
+for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
 # 3. Custom functions and key bindings
 # Refresh config with F5
@@ -147,8 +158,6 @@ zf() {
 # Create the widget
 zle -N zi-widget
 
-# Bind Ctrl+F to the widget
-bindkey '^F' zi-widget
 
 # Source my setup
 zshdir=$CUSTOM_ZSH_FUNCTIONS
@@ -167,6 +176,11 @@ if [ -d $zshdir ]; then
     unset i
 fi
 unset zshdir files pattern
+
+# Bind Ctrl+F to the widget
+bindkey "\ef" zi-widget
+bindkey -M viins "\ef" zi-widget
+
 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!

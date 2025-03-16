@@ -206,7 +206,7 @@ alias kcx='kubectx'
 
 
 function showImage() {
-    jq '.. | select(type=="object") | select(.image != null) | .image'
+    jq -r '.. | select(type=="object") | select(.image != null) | .image'
 }
 
 # Create a global alias FL that can be used anywhere in the command
