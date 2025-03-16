@@ -8,7 +8,7 @@ fi
 
 export PATH=$HOME/bin:$PATH
 export ZSH_CONFIGS=$HOME/zsh
-export DOTFILES=$HOME/dotfiles/config/zsh
+export DOTFILES=$HOME/.config/zsh
 export CUSTOM_ZSH_FUNCTIONS=$DOTFILES/scripts
 export PLUGINS_DIR=$HOME/.config/zsh/plugins
 

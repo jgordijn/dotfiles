@@ -1,7 +1,9 @@
 [user]
     name = Jeroen Gordijn
     email = jeroen.gordijn@gmail.com
-    signingkey = 5D9EE4F6042FD892
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBSSGbehh9Y6I9DSejnaNUGhXkinx3QT66NLtsUu/H1n
+[includeIf "gitdir:~/projects/dhl/"]
+    path = ~/projects/dhl/dhl-gitconfig
 [color]
     ui= auto
     status = auto
@@ -23,7 +25,8 @@
     untracked = cyan
 [core]
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
-    excludesfile = /home/jgordijn/.gitignore_global
+	excludesfile = /Users/jgordijn/.gitignore_global
+    pager = delta --diff-so-fancy --color-only
     autocrlf = input
 [alias]
     st = status
@@ -46,10 +49,38 @@
 [filter "media"]
     clean = git-media-clean %f
     smudge = git-media-smudge %f
+[add.interactive]
+    useBuiltin = false # required for git 2.37.0
+[interactive]
+    diffFilter = delta --color-only  --diff-so-fancy
+
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
+
 [filter "lfs"]
-    clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
+	clean = git-lfs clean -- %f
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
 [commit]
 	gpgsign = true
+	template = /Users/jgordijn/.stCommitMsg
