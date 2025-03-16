@@ -27,7 +27,6 @@ grob () {
         open "https://${BASE_URL}/-/tree/${CURRENT_BRANCH}"\;
     fi
 }
-alias gro="gh pr view --web"
 
 # Open the main branch
 grm () {
@@ -43,6 +42,7 @@ grps() {
     open "https://${BASE_URL}/pulls"
 }
 
+alias gro="gh pr view --web"
 
 alias gf='git fetch'
 alias ga='git add'
