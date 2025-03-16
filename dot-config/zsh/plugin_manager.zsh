@@ -1,6 +1,6 @@
 # Base functions that are required throughout my zsh
 # Include this at the top of your .zshrc
-export ZSH_PLUGINS=$HOME/.config/zsh/plugins
+export ZSH_PLUGINS=$HOME/.config/zsh/managed-plugins
 
 # Self rolled plugin manager
 # see: https://www.reddit.com/r/zsh/comments/1iurg4z/comment/me4w1g9/?context=3&share_id=d90wJd78Smc2CA9CSmq7j&utm_content=1&utm_medium=ios_app&utm_name=iossmf&utm_source=share&utm_term=22
