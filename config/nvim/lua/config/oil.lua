@@ -12,9 +12,10 @@ function _G.get_oil_winbar()
 end
 
 require("oil").setup({
---    keymwin_options = {
---        winbar = "%!v:lua.get_oil_winbar()",
---    },
+    view_options = {
+        -- Show files and directories that start with "."
+        show_hidden = true
+    },
     aps = {
         ["gd"] = {
             desc = "Toggle file detail view",
