@@ -1,7 +1,7 @@
 [user]
     name = Jeroen Gordijn
     email = jeroen.gordijn@gmail.com
-    signingkey = 5D9EE4F6042FD892
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBSSGbehh9Y6I9DSejnaNUGhXkinx3QT66NLtsUu/H1n
 [color]
     ui= auto
     status = auto
