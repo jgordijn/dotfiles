@@ -9,7 +9,4 @@ require("config.lazy")
 require("config.keymaps")
 require("config.oil")
 
-vim.cmd.colorscheme "catppuccin"
--- Optional: set the flavor (latte, frappe, macchiato, mocha)
-vim.g.catppuccin_flavour = "mocha"
 
