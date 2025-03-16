@@ -212,7 +212,8 @@ function showImage() {
 # Create a global alias FL that can be used anywhere in the command
 alias -g SI=' -o json | showImage'
 alias -g Y="-o yaml | bat -p -l yaml"
-alias -g J="-o json | fx"
+alias -g J="-o json"
+alias -g JX="-o json | fx"
 
 
 
