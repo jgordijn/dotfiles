@@ -1,9 +1,11 @@
 vim.cmd('language en_US.UTF-8')
 
+require("config.tabstops")
 require("config.lazy")
 require("config.keymaps")
 require("config.harpoon2")
-
+require("config.telescope")
+require("config.oil")
 
 vim.cmd.colorscheme "catppuccin"
 -- Optional: set the flavor (latte, frappe, macchiato, mocha)
