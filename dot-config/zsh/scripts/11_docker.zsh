@@ -1,3 +1,6 @@
+# Load docker completions
+# the brew version does not work for compose
+source <(docker completion zsh)
 
 alias d="docker"
 alias dps="docker ps"
