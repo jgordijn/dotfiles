@@ -16,6 +16,7 @@ export PLUGINS_DIR=$HOME/.config/zsh/plugins
 source $DOTFILES/plugin_manager.zsh
 
 export EDITOR=nvim
+export VISUAL=nvim
 export ZVM_LAZY_KEYBINDINGS=false
 ZVM_INIT_MODE=sourcing
 

@@ -4,7 +4,8 @@ return {
     config = function()
         require("mason").setup()
         require("mason-lspconfig").setup({
-            ensure_installed = { "lua_ls" -- For Lua
+            ensure_installed = {
+                "lua_ls", -- For Lua
                 -- Add other language servers you want automatically installed:
                 -- "tsserver",  -- TypeScript/JavaScript
                 -- "pyright",   -- Python
