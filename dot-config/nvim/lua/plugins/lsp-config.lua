@@ -1,23 +1,4 @@
 return {
-  -- "neovim/nvim-lspconfig",
-  -- dependencies = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim", "hrsh7th/cmp-nvim-lsp" },
-  -- config = function()
-  --   local lspconfig = require("lspconfig")
-  --   local capabilities = require("cmp_nvim_lsp").default_capabilities()
-  --
-  --   -- This will automatically set up the installed language servers
-  --   require("mason-lspconfig").setup_handlers({ function(server_name)
-  --     lspconfig[server_name].setup({
-  --       capabilities = capabilities
-  --     })
-  --   end
-  --   })
-  --   -- vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format() end, desc = "Format current buffer")
-  -- end,
-  -- keys = {
-  --   { "<leader>lf", function() vim.lsp.buf.format() end, desc = "Format current buffer" }
-  -- }
-
   -- LSP Plugins
   {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
@@ -131,6 +112,8 @@ return {
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
           map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+
+          map("<leader>lf", vim.lsp.buf.format, "[F]ormat")
 
           -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
           ---@param client vim.lsp.Client
@@ -306,13 +289,5 @@ return {
         },
       })
     end,
-    keys = {
-      -- Format the current buffer
-      {
-        "<leader>lf",
-        function() vim.lsp.buf.format() end,
-        desc = "[L]SP [F]ormat current buffer",
-      },
-    },
   },
 }
