@@ -87,6 +87,7 @@ fi
 alias ls='ls --color=auto'
 alias vim='nvim'
 
+alias rg='rg --hidden --smart-case --follow'
 
 alias ..='cd ..'
 alias ...='cd ../..'
