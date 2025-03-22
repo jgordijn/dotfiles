@@ -8,6 +8,8 @@ fi
 
 export PATH=$HOME/bin:$PATH
 export ZSH_CONFIGS=$HOME/zsh
+export ZSH_CACHE_DIR=$HOME/.cache/zsh
+[[ -f $ZSH_CACHE_DIR ]] || mkdir -p $ZSH_CACHE_DIR
 export DOTFILES=$HOME/.config/zsh
 export CUSTOM_ZSH_FUNCTIONS=$DOTFILES/scripts
 export PLUGINS_DIR=$HOME/.config/zsh/plugins
@@ -162,13 +164,12 @@ zle -N zi-widget
 
 
 # Source my setup
-zshdir=$CUSTOM_ZSH_FUNCTIONS
-if [ -d $zshdir ]; then
+if [ -d $CUSTOM_ZSH_FUNCTIONS ]; then
     pattern=".*/[0-9]+.*\.z?sh$"
     if [[ "$OSTYPE" == "darwin"* ]]; then
-      files=$(find -E $zshdir -regex "$pattern" | sort)
+      files=$(fd "^[0-9]+.*\.z?sh$" --no-ignore-vcs $CUSTOM_ZSH_FUNCTIONS | sort)
     else
-      files=$(find $zshdir -regextype posix-extended -regex "$pattern" | sort)
+      files=$(fd $CUSTOM_ZSH_FUNCTIONS -regextype posix-extended -regex "$pattern" | sort)
     fi
     for i in ${(f)files}; do # param extension flag 'f' strips newlines
         if [ -r $i ]; then
@@ -177,7 +178,6 @@ if [ -d $zshdir ]; then
     done
     unset i
 fi
-unset zshdir files pattern
 
 # Bind Ctrl+F to the widget
 bindkey "\ef" zi-widget
