@@ -49,6 +49,7 @@ return {              -- Useful plugin to show you pending keybinds.
       { '<leader>f', group = 'Telescope Files' },
       { '<leader>g', group = '[G]it' },
       { '<leader>l', group = '[L]sp' },
+      { '<leader>p', group = '[P]rettier' },
       { '<leader>r', group = '[R]ename' },
       { '<leader>s', group = '[S]earch' },
       { '<leader>w', group = '[W]orkspace' },
