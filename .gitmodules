@@ -1,3 +1,3 @@
-[submodule "dot-config/zsh/scripts/private"]
-	path = dot-config/zsh/scripts/private
+[submodule "dot-config/zsh/scripts/private_zsh_modules"]
+	path = dot-config/zsh/scripts/private_zsh_modules
 	url = git@github.com:jgordijn/private_zsh_modules.git
