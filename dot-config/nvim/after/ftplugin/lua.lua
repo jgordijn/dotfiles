@@ -8,3 +8,6 @@ vim.api.nvim_create_autocmd('BufWrite', {
     vim.lsp.buf.format()
   end,
 })
+
+vim.api.nvim_set_keymap('n', '<leader>x', ':%lua<CR>', { desc = 'E[x]ecute Lua buffer', noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<leader>x', ':lua<CR>', { desc = 'E[x]ecute Lua code', noremap = true, silent = true })
