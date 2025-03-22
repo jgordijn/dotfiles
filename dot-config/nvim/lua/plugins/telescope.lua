@@ -79,5 +79,6 @@ return {
     { '<leader><leader>', require("telescope.builtin").buffers,                                                     desc = '[ ] Find existing buffers' },
     -- Shortcut for searching your Neovim configuration files
     { "<leader>fn",       function() require("telescope.builtin").find_files { cwd = vim.fn.stdpath 'config' } end, desc = "[F]ind [N]eovim files" },
+    { "<leader>fc",       function() require("telescope.builtin").find_files { cwd = '~/dotfiles' } end,            desc = "[F]ind [C]onfig dot files" },
   }
 }
