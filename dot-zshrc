@@ -86,7 +86,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 else
 	alias cat="batcat -p"
 fi
-alias ls='ls --color=auto'
+alias ls='eza --icons=auto --color=auto'
 alias vim='nvim'
 
 alias rg='rg --hidden --smart-case --follow'
@@ -97,10 +97,6 @@ alias ....='cd ../../..'
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
-
-
-alias dps="docker ps"
-
 
 # Auto cd into directories
 setopt autocd
