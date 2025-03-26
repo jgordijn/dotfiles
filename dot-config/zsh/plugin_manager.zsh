@@ -32,7 +32,7 @@ function update_plugins() {
 
 # Run the update_plugins function at most once per day
 LAST_UPDATE_FILE="$ZSH_DATA_DIR/.last_plugin_update"
-if [ ! -f "$LAST_UPDATE_FILE" ] || [ "$(fd --type f --changed-before 1day "$LAST_UPDATE_FILE" 2>/dev/null)" ]; then
+if [[ ! -f "$LAST_UPDATE_FILE" ]] && [[ $(find "$LAST_UPDATE_FILE" -mtime +1 -print) ]]; then
     update_plugins
     touch "$LAST_UPDATE_FILE"
 fi
