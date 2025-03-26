@@ -13,6 +13,7 @@ return {
         },
         ensure_installed = {
           'bash',
+          'c',
           'diff',
           'git_config',
           'git_rebase',
