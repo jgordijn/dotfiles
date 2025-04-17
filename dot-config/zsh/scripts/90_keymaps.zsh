@@ -23,3 +23,6 @@ bindkey -M viins '^L' clear-scrollback-buffer
 bindkey -M vicmd 'q' push-line
 
 
+# CTRL-y will do the same as right arrow when there is a suggestion
+bindkey '^y' autosuggest-accept
+

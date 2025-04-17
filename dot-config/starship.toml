@@ -4,7 +4,7 @@
 #right_format = "$kubernetes"
 # Inserts a blank line between shell prompts
 add_newline = true
-format = "$username$hostname$directory$git_branch$git_state$git_status$java$nodejs$jobs$fill$azure$kubernetes$cmd_duration$status\n$os$sudo$character"
+format = "$username$hostname$directory$git_branch$git_state$git_status$java$nodejs$jobs$python$fill$azure$kubernetes$cmd_duration$status\n$os$sudo$character"
 
 [azure]
 disabled = true

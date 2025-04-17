@@ -83,5 +83,7 @@ zstyle ':fzf-tab:*' fzf-flags -i --height=40% --color=fg:1,fg+:2 --bind="tab:dow
 
 # Popups in tmux. They're to small
 # zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-
+# Default: do not group or format completions in fzf-tab
+zstyle ':completion:*' fzf-tab--no-group
+zstyle ':completion:*' fzf-tab--format ''
 
