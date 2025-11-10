@@ -201,19 +201,3 @@ unfunction _build_kubectl_out_alias
 
 alias k=kubectl
 alias kgp='kubectl get pods'
-alias kns='kubens'
-alias kcx='kubectx'
-
-
-function showImage() {
-    jq -r '.. | select(type=="object") | select(.image != null) | .image'
-}
-
-# Create a global alias FL that can be used anywhere in the command
-alias -g SI=' -o json | showImage'
-alias -g Y="-o yaml | bat -p -l yaml"
-alias -g J="-o json"
-alias -g JX="-o json | fx"
-
-
-

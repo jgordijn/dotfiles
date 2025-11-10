@@ -29,6 +29,7 @@ grob () {
 }
 
 # Open the main branch
+unalias grm 2>/dev/null
 grm () {
     local REMOTE="${1:-origin}"
     local BASE_URL=`git remote get-url "${REMOTE}" | sed 's|\.git$||' | sed -E 's;^(git@|https://);;' | sed 's|:|/|'`
