@@ -2,8 +2,15 @@
     name = Jeroen Gordijn
     email = jeroen.gordijn@gmail.com
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBSSGbehh9Y6I9DSejnaNUGhXkinx3QT66NLtsUu/H1n
-[includeIf "gitdir:~/projects/dhl/"]
-    path = ~/projects/dhl/dhl-gitconfig
+[includeIf "gitdir:/Users/jgordijn/projects/dhl/"]
+    path = /Users/jgordijn/projects/dhl/dhl-gitconfig
+[includeIf "gitdir:/Users/jgordijn/projects/ahold/"]
+    path = /Users/jgordijn/projects/ahold/ahold-gitconfig
+[includeIf "gitdir:/Users/jgordijn/.config/opencode"]
+    path = /Users/jgordijn/projects/ahold/ahold-gitconfig
+[credential]
+    username = jgordijn
+
 [color]
     ui= auto
     status = auto
@@ -25,7 +32,7 @@
     untracked = cyan
 [core]
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
-	excludesfile = /Users/jgordijn/.gitignore_global
+    excludesfile = /Users/jgordijn/.gitignore_global
     pager = delta --diff-so-fancy --color-only
     autocrlf = input
 [alias]
@@ -76,7 +83,7 @@
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [gpg]
-  format = ssh
+    format = ssh
 
 [gpg "ssh"]
   program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
@@ -84,3 +91,7 @@
 [commit]
 	gpgsign = true
 	template = /Users/jgordijn/.stCommitMsg
+[tag]
+	gpgSign = true
+[init]
+	defaultBranch = main

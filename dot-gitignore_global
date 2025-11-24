@@ -115,4 +115,31 @@ build/
 
 .env-localhost
 .env-*
+.env
+.azure
 
+
+# Javascript
+*lock.json
+
+# These are specific to ahold booking service:
+certfile-tst.cert
+truststore.p12
+
+*.local.md
+.claude/settings.local.json
+implementationplans
+
+.worktree
+.worktrees
+
+.opencode
+.worktrees/
+
+# Speckit
+#
+.github/**/speckit*.md
+.specify
+.tmp
+
+.private-journal/
