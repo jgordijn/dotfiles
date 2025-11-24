@@ -59,6 +59,6 @@ alias glog='git log --oneline --decorate --graph'
 alias grt='cd "$(git rev-parse --show-toplevel || echo .)"'
 alias gpf='git push --force-with-lease --force-if-includes'
 alias gd='git diff'
-
-
-
+alias gwl='git worktree list'
+alias gwr='git worktree remove'
+alias gwa='git worktree add'
