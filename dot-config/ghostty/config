@@ -48,15 +48,19 @@ macos-option-as-alt = left
 #keybind = alt+left=unbind
 #keybind = alt+right=unbind
 
-keybind = super+n=unbind
-keybind = super+t=unbind
+# keybind = super+n=unbind
+# keybind = super+t=unbind
+
+keybind = cmd+shift+n=prompt_surface_title
 
 
 # command=/bin/zsh -c /opt/homebrew/bin/zellij
 
 font-size = 18.0
 
-theme = catppuccin-macchiato
+#theme = catppuccin-macchiato
+theme = Catppuccin Macchiato
 
 
+#keybind = shift+enter=text:\n
 
