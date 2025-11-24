@@ -4,7 +4,8 @@
 #right_format = "$kubernetes"
 # Inserts a blank line between shell prompts
 add_newline = true
-format = "$username$hostname$directory$git_branch$git_state$git_status$java$nodejs$jobs$python$fill$azure$kubernetes$cmd_duration$status\n$os$sudo$character"
+#format = "$username$hostname$directory\n$git_branch$git_state$git_status$java$nodejs$jobs$python$azure$kubernetes$cmd_duration$status\n$os$sudo$character"
+format = "$java$nodejs$jobs$python\n$azure$kubernetes\n$username$hostname$directory$git_branch$git_state$git_status\n($cmd_duration$status\n)$os$sudo$character"
 
 [azure]
 disabled = true
@@ -14,7 +15,7 @@ symbol = " "
 disabled = false
 
 [os]
-disabled = true
+disabled = false
 
 [sudo]
 disabled = false
@@ -36,7 +37,14 @@ disabled = true
 
 [directory]
 truncate_to_repo = false
+# fish_style_pwd_dir_length=2
 truncation_length = 50
+
+[directory.substitutions]
+'~/projects/ahold/' = ''
+'ah-media-device-service' = 'mds'
+'.worktrees' = '🌳'
+'gambit-dmi-' = ''
 
 [kubernetes]
 disabled = false
