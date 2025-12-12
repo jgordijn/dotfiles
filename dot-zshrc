@@ -14,6 +14,10 @@ export DOTFILES=$HOME/.config/zsh
 export CUSTOM_ZSH_FUNCTIONS=$DOTFILES/scripts
 export PLUGINS_DIR=$HOME/.config/zsh/plugins
 
+# Feature flags for optional zsh scripts
+export ZSH_ATUIN_ENABLED=true
+# export ZSH_DOTENV_ENABLED=true
+
 # Own plugin manager
 source $DOTFILES/plugin_manager.zsh
 
