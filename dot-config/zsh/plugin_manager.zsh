@@ -21,6 +21,7 @@ function zsh_add_plugin() {
 
 function update_plugins() {
     echo "Time to update plugins"
+    local original_dir=$PWD
     for plugin in $ZSH_PLUGINS/*; do
         if [ -d "$plugin" ]; then
             echo "Updating $plugin"
@@ -28,11 +29,12 @@ function update_plugins() {
             git pull
         fi
     done
+    cd $original_dir
 }
 
 # Run the update_plugins function at most once per day
 LAST_UPDATE_FILE="$ZSH_DATA_DIR/.last_plugin_update"
-if [[ ! -f "$LAST_UPDATE_FILE" ]] && [[ $(find "$LAST_UPDATE_FILE" -mtime +1 -print) ]]; then
+if [[ ! -f "$LAST_UPDATE_FILE" ]] || [[ -n $(find "$LAST_UPDATE_FILE" -mtime +1 -print 2>/dev/null) ]]; then
     update_plugins
     touch "$LAST_UPDATE_FILE"
 fi

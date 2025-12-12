@@ -198,6 +198,3 @@ _build_kubectl_out_alias "kj"  'kubectl "$@" -o json | jq'
 _build_kubectl_out_alias "kjx" 'kubectl "$@" -o json | fx'
 _build_kubectl_out_alias "ky"  'kubectl "$@" -o yaml | yh'
 unfunction _build_kubectl_out_alias
-
-alias k=kubectl
-alias kgp='kubectl get pods'

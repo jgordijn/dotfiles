@@ -70,9 +70,6 @@ zstyle ':fzf-tab:*' use-fzf-default-opts no
 # switch group using `<` and `>`
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
-# Case-insensitive completion for fzf-tab
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
-
 # Configure how tab should behave in fzf-tab
 zstyle ':fzf-tab:*' continuous-trigger 'right'  # Use right arrow instead of tab temporarily
 zstyle ':fzf-tab:*' fzf-bindings 'tab:down,btab:up,ctrl-j:accept,ctrl-k:kill-line'

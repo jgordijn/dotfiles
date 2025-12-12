@@ -6,10 +6,7 @@ if command -v docker &> /dev/null; then
 elif command -v podman &> /dev/null; then
     # Use podman as docker replacement
     alias docker="podman"
-    # Load podman completions if available
-    if command -v podman &> /dev/null; then
-        source <(podman completion zsh)
-    fi
+    source <(podman completion zsh)
 fi
 
 
