@@ -24,7 +24,7 @@ grob () {
     then
         open "https://${BASE_URL}/tree/${CURRENT_BRANCH}"
     else
-        open "https://${BASE_URL}/-/tree/${CURRENT_BRANCH}"\;
+        open "https://${BASE_URL}/-/tree/${CURRENT_BRANCH}"
     fi
 }
 
