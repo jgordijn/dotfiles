@@ -1,3 +1,6 @@
+# Suppress podman compose warning about external provider
+export PODMAN_COMPOSE_WARNING_LOGS=false
+
 # Check if docker exists, otherwise use podman if available
 if command -v docker &> /dev/null; then
     # Load docker completions
