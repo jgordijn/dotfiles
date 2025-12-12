@@ -95,3 +95,6 @@
 	gpgSign = true
 [init]
 	defaultBranch = main
+[merge "beads"]
+	driver = bd merge %A %O %A %B
+	name = bd JSONL merge driver

@@ -143,3 +143,10 @@ implementationplans
 .tmp
 
 .private-journal/
+
+.clones/
+
+# Beads stealth mode configuration (added by bd init --stealth)
+**/.beads/
+**/.claude/settings.local.json
+BEADS.md
