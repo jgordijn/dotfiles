@@ -1,9 +1,21 @@
+# OPENSPEC:START
+# OpenSpec shell completions configuration
+fpath=("/Users/jgordijn/.oh-my-zsh/custom/completions" $fpath)
+autoload -Uz compinit
+compinit
+# OPENSPEC:END
+
 # For profiling this should be at the top
 # zmodload zsh/zprof
 PROMPTER="starship"
 
 if [[ "$TERM" == "xterm-ghostty" ]]; then
   export TERM=xterm-256color
+fi
+
+# Auto-start tmux only in Ghostty (not in Zed, VS Code, or other IDE terminals)
+if [[ -z "$TMUX" ]] && [[ "$TERM_PROGRAM" == "ghostty" ]] && command -v tmux &>/dev/null; then
+  exec tmux new-session -c "$HOME"
 fi
 
 export PATH=$HOME/bin:$PATH
@@ -85,6 +97,8 @@ zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
 # allow to watch with aliases
 alias watch='watch '
+
+alias chafa="chafa -f kitty -s 40x30 --passthrough=tmux"
 
 alias rg='rg --hidden --smart-case --follow'
 
@@ -211,6 +225,7 @@ fi
 export PATH="$PATH:/Users/jgordijn/.lmstudio/bin"
 # End of LM Studio CLI section
 
+export N8N_API_KEY=$(cat ~/.secrets/n8n-api-key)
 
 # opencode
 export PATH=/Users/jgordijn/.opencode/bin:$PATH
@@ -218,3 +233,62 @@ export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
 # Added by Antigravity
 export PATH="/Users/jgordijn/.antigravity/antigravity/bin:$PATH"
+
+# Amp CLI
+export PATH="/Users/jgordijn/.amp/bin:$PATH"
+
+
+
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+    autoload -Uz compinit
+    compinit
+fi
+
+# bun completions
+[ -s "/Users/jgordijn/.bun/_bun" ] && source "/Users/jgordijn/.bun/_bun"
+
+setopt allexport
+source ~/.secrets/hetzner.env
+source ~/.secrets/tailscale.env
+unsetopt allexport
+
+
+export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+
+# --- AI Sandbox Functions (managed by setup-sandbox.sh) ---
+ai-lab() {
+    local ws_root="/Users/jgordijn/projects/ahold"
+    local config="/Users/jgordijn/projects/ahold/.devcontainer/standard/devcontainer.json"
+    devcontainer up --workspace-folder "$ws_root" --config "$config" && \
+    devcontainer exec --workspace-folder "$ws_root" --config "$config" \
+        zsh -c "cd '$PWD' 2>/dev/null || cd '$ws_root'; exec zsh"
+}
+
+ai-ops() {
+    local ws_root="/Users/jgordijn/projects/ahold"
+    local config="/Users/jgordijn/projects/ahold/.devcontainer/privileged/devcontainer.json"
+    devcontainer up --workspace-folder "$ws_root" --config "$config" && \
+    devcontainer exec --workspace-folder "$ws_root" --config "$config" \
+        zsh -c "cd '$PWD' 2>/dev/null || cd '$ws_root'; exec zsh"
+}
+
+ai-lab-rebuild() {
+    local ws_root="/Users/jgordijn/projects/ahold"
+    local config="/Users/jgordijn/projects/ahold/.devcontainer/standard/devcontainer.json"
+    devcontainer up --remove-existing-container --workspace-folder "$ws_root" --config "$config" && \
+    devcontainer exec --workspace-folder "$ws_root" --config "$config" \
+        zsh -c "cd '$PWD' 2>/dev/null || cd '$ws_root'; exec zsh"
+}
+
+ai-ops-rebuild() {
+    local ws_root="/Users/jgordijn/projects/ahold"
+    local config="/Users/jgordijn/projects/ahold/.devcontainer/privileged/devcontainer.json"
+    devcontainer up --remove-existing-container --workspace-folder "$ws_root" --config "$config" && \
+    devcontainer exec --workspace-folder "$ws_root" --config "$config" \
+        zsh -c "cd '$PWD' 2>/dev/null || cd '$ws_root'; exec zsh"
+}
+# --- End AI Sandbox Functions ---
+#
+
