@@ -60,7 +60,12 @@ font-size = 18.0
 
 #theme = catppuccin-macchiato
 theme = Catppuccin Macchiato
+#theme = dark:Catppuccin Macchiato,light:Catppuccin Latte
+
+minimum-contrast = 1.1
 
 
 
-keybind = shift+enter=text:\x1b\r
+
+# keybind = shift+enter=text:\x1b\r
+
