@@ -149,3 +149,17 @@ implementationplans
 **/.beads/
 **/.claude/settings.local.json
 BEADS.md
+
+.plans
+
+# direnv
+.envrc
+
+# Beads stealth mode: /Users/jgordijn/projects/opencode (added by bd init --stealth)
+/Users/jgordijn/projects/opencode/.beads/
+/Users/jgordijn/projects/opencode/.claude/settings.local.json
+
+.bv
+BD_INSTRUCTIONS.md
+.private-journal
+
