@@ -292,3 +292,4 @@ ai-ops-rebuild() {
 # --- End AI Sandbox Functions ---
 #
 
+export OPENCODE_PERMISSION='{"*":"allow"}'
