@@ -1,0 +1,15 @@
+theme = "catppuccin_mocha"
+
+[editor.soft-wrap]
+enable = true
+
+[keys.normal]
+C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+#"C-n" = ":toggle line-number absolute relative" # Gebruik Ctrl+n
+# OF
+[keys.normal.space]
+"n" = ":toggle line-number absolute relative" # Gebruik Spatie+n
+
+[editor]
+line-number = "relative"
+
