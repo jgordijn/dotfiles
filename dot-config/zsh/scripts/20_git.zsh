@@ -15,35 +15,9 @@ function git_main_branch() {
   return 1
 }
 
-# This function, `gro`, opens the current branch of a Git repository in the default web browser.
-grob () {
-    local REMOTE="${1:-origin}"
-    local CURRENT_BRANCH=`git branch --show-current`
-    local BASE_URL=`git remote get-url "${REMOTE}" | sed 's|\.git$||' | sed -E 's;^(git@|https://);;' | sed 's|:|/|'`
-    if [[ $BASE_URL == *"github.com"* ]]
-    then
-        open "https://${BASE_URL}/tree/${CURRENT_BRANCH}"
-    else
-        open "https://${BASE_URL}/-/tree/${CURRENT_BRANCH}"
-    fi
-}
-
-# Open the main branch
-unalias grm 2>/dev/null
-grm () {
-    local REMOTE="${1:-origin}"
-    local BASE_URL=`git remote get-url "${REMOTE}" | sed 's|\.git$||' | sed -E 's;^(git@|https://);;' | sed 's|:|/|'`
-    open "https://${BASE_URL}"
-}
-
-# Open the pull requests
-grps() {
-    local REMOTE="${1:-origin}"
-    local BASE_URL=`git remote get-url "${REMOTE}" | sed 's|\.git$||' | sed -E 's;^(git@|https://);;' | sed 's|:|/|'`
-    open "https://${BASE_URL}/pulls"
-}
-
-alias gro="gh pr view --web"
+alias gvb='gh browse -b $(git branch --show-current)'
+alias gvm='gh browse'
+alias gvp='gh pr view --web'
 
 alias gf='git fetch'
 alias ga='git add'
