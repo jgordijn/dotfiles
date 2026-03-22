@@ -12,9 +12,9 @@ if [[ "$TERM" == "xterm-ghostty" ]]; then
 fi
 
 # Auto-start tmux only in Ghostty (not in Zed, VS Code, or other IDE terminals)
-if [[ -z "$TMUX" ]] && [[ "$TERM_PROGRAM" == "ghostty" ]] && command -v tmux &>/dev/null; then
-  exec tmux new-session -c "$HOME"
-fi
+# if [[ -z "$TMUX" ]] && [[ "$TERM_PROGRAM" == "ghostty" ]] && command -v tmux &>/dev/null; then
+#   exec tmux new-session -c "$HOME"
+# fi
 
 export PATH=$HOME/bin:$PATH
 export ZSH_CONFIGS=$HOME/zsh
