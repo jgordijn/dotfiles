@@ -1,8 +1,6 @@
 # OPENSPEC:START
 # OpenSpec shell completions configuration
 fpath=("/Users/jgordijn/.oh-my-zsh/custom/completions" $fpath)
-autoload -Uz compinit
-compinit
 # OPENSPEC:END
 
 # For profiling this should be at the top
@@ -62,14 +60,12 @@ if [ "$PROMPTER" = "powerlevel10k" ]; then
   fi
 fi
 
-# 4. Initialize completion system (near the bottom)
-autoload -Uz compinit
+# 4. Initialize completion system once, after all completion paths are configured
+source $DOTFILES/lib/completion_init.zsh
+source $DOTFILES/lib/widget_init.zsh
 
-if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
-  compinit
-else
-  compinit -C
-fi
+zsh_add_default_homebrew_completion_path
+zsh_run_compinit_once "${ZDOTDIR:-$HOME}/.zcompdump" "$HOME/.zcompcache"
 
 compdef _code code-insiders
 
@@ -117,7 +113,7 @@ setopt INTERACTIVE_COMMENTS # Allow comments in interactive shell (useful for co
 # Safe paste: prevents pasted text with newlines from executing immediately
 # You must press Enter after pasting to execute
 autoload -Uz bracketed-paste-magic
-zle -N bracketed-paste bracketed-paste-magic
+zsh_invoke_if_widget_shell zle -N bracketed-paste bracketed-paste-magic
 setopt PUSHD_IGNORE_DUPS    # Do not store duplicates in the stack.
 setopt PUSHD_SILENT         # Do not print the directory stack after pushd or popd.
 alias ds='dirs -v'
@@ -126,7 +122,7 @@ for index ({1..9}) alias "$index"="cd +${index}"; unset index
 # 3. Custom functions and key bindings
 # Refresh config with F5
 alias reload="exec zsh"
-bindkey -s "^[[15~" "reload^M"
+zsh_invoke_if_widget_shell bindkey -s "^[[15~" "reload^M"
 
 # Source all completion scripts in ~/bin/completions
 for f in ~/bin/completions/_*; do
@@ -177,8 +173,7 @@ zf() {
 }
 
 # Create the widget
-zle -N zi-widget
-
+zsh_invoke_if_widget_shell zle -N zi-widget
 
 # Source my setup
 if [ -d $CUSTOM_ZSH_FUNCTIONS ]; then
@@ -192,8 +187,8 @@ if [ -d $CUSTOM_ZSH_FUNCTIONS ]; then
 fi
 
 # Bind Ctrl+F to the widget
-bindkey "\ef" zi-widget
-bindkey -M viins "\ef" zi-widget
+zsh_invoke_if_widget_shell bindkey "\ef" zi-widget
+zsh_invoke_if_widget_shell bindkey -M viins "\ef" zi-widget
 
 
 
@@ -239,12 +234,6 @@ export PATH="/Users/jgordijn/.amp/bin:$PATH"
 
 
 
-if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-
-    autoload -Uz compinit
-    compinit
-fi
 
 # bun completions
 [ -s "/Users/jgordijn/.bun/_bun" ] && source "/Users/jgordijn/.bun/_bun"

@@ -8,5 +8,5 @@
 if command -v atuin &> /dev/null; then
     eval "$(atuin init zsh --disable-up-arrow)"
     # Bind Ctrl+R in vicmd mode as well (atuin only binds viins by default)
-    bindkey -M vicmd '^R' atuin-search
+    zsh_invoke_if_widget_shell bindkey -M vicmd '^R' atuin-search
 fi

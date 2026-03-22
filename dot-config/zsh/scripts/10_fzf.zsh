@@ -15,10 +15,10 @@ export FZF_CTRL_T_OPTS="
   --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
 # CTRL-T interferes with zellij
-bindkey -r '^T'
+zsh_invoke_if_widget_shell bindkey -r '^T'
 # Bind to alt-t instead
-bindkey '\et' fzf-file-widget
-bindkey -M viins '\et' fzf-file-widget
+zsh_invoke_if_widget_shell bindkey '\et' fzf-file-widget
+zsh_invoke_if_widget_shell bindkey -M viins '\et' fzf-file-widget
 
 
 _fzf_comprun() {

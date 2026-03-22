@@ -2,7 +2,7 @@
 
 export KEYTIMEOUT=1
 # Set default keybinding to viins
-bindkey -v
+zsh_invoke_if_widget_shell bindkey -v
 
 #autoload -Uz edit-command-line
 #zle -N edit-command-line
