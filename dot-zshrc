@@ -16,7 +16,7 @@ fi
 #   exec tmux new-session -c "$HOME"
 # fi
 
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin:$PATH:~/go/bin
 export ZSH_CONFIGS=$HOME/zsh
 export ZSH_DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/zsh"
 [[ -d $ZSH_DATA_DIR ]] || mkdir -p $ZSH_DATA_DIR
@@ -231,6 +231,7 @@ export PATH="/Users/jgordijn/.antigravity/antigravity/bin:$PATH"
 
 # Amp CLI
 export PATH="/Users/jgordijn/.amp/bin:$PATH"
+
 
 
 
