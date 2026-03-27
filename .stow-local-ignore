@@ -1,0 +1,31 @@
+# Standard VCS directories
+RCS
+.+,v
+CVS
+\.\#.+
+\.cvsignore
+\.svn
+_darcs
+\.hg
+\.git
+\.gitignore
+\.gitmodules
+\.gitattributes
+
+# Editor backup/autosave files
+.+~
+\#.*\#
+
+# Project documentation and metadata (not dotfiles)
+^/README.*
+^/LICENSE.*
+^/COPYING
+^/DOTFILES\.md
+^/CLAUDE\.md
+^/docs
+^/tests
+
+# Build/tool directories
+^/\.claude
+^/\.beads
+^/\.worktrees
