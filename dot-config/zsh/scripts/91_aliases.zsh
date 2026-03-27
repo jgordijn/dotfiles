@@ -5,6 +5,6 @@ alias l='eza --all --long --group --group-directories-first --icons --header --t
 alias ls='ls --color=auto'
 alias vim='nvim'
 
-alias pi="bunx @mariozechner/pi-coding-agent@latest"
+source "$DOTFILES/lib/pi_varlock.zsh"
 
 source <(bd completion zsh)
