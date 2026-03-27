@@ -71,6 +71,11 @@ bind | split-window -h -c "#{pane_current_path}"
 bind - split-window -v -c "#{pane_current_path}"
 ```
 
+### Notes
+
+- Long session names are truncated in the status bar (`Creative…`) so window titles keep enough room.
+
+
 ### Key Bindings
 
 | Binding | Action |
