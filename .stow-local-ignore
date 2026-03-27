@@ -24,6 +24,7 @@ _darcs
 ^/CLAUDE\.md
 ^/docs
 ^/tests
+^/install\.sh
 
 # Build/tool directories
 ^/\.claude
