@@ -125,47 +125,105 @@ test_aliases_script_sources_the_pi_varlock_helper() {
   source "$ALIASES_SCRIPT"
 
   (( $+functions[pi] )) || fail "aliases script should define the pi function"
+  (( $+functions[pi-with-azure] )) || fail "aliases script should define the pi-with-azure function"
   (( $+aliases[pi] == 0 )) || fail "pi should no longer be defined as an alias"
+  (( $+aliases[pi-with-azure] == 0 )) || fail "pi-with-azure should not be defined as an alias"
 }
 
-test_pi_runs_varlock_with_expected_arguments() {
+test_pi_runs_bun_directly_with_expected_arguments() {
   emulate -L zsh
   source "$HELPER"
   export PI_VARLOCK_CONFIG_DIR=/tmp/pi-varlock/
-  local -a call_args=()
+  local -a bun_args=()
+  local -a varlock_args=()
+  bun() {
+    bun_args=("$@")
+  }
   varlock() {
-    call_args=("$@")
+    varlock_args=("$@")
   }
 
   pi --model sonnet:high "start pi"
 
-  assert_eq "11" "${#call_args[@]}" "pi should forward the complete varlock command"
-  assert_eq "run" "$call_args[1]" "pi should invoke varlock run"
-  assert_eq "--no-redact-stdout" "$call_args[2]" "pi should preserve TTY behavior"
-  assert_eq "--path" "$call_args[3]" "pi should pass the varlock config path flag"
-  assert_eq "/tmp/pi-varlock/" "$call_args[4]" "pi should point varlock at the pi config directory"
-  assert_eq "--" "$call_args[5]" "pi should separate varlock args from the pi command"
-  assert_eq "bun" "$call_args[6]" "pi should launch via bun"
-  assert_eq "x" "$call_args[7]" "pi should execute the npm package via bun x"
-  assert_eq "@mariozechner/pi-coding-agent@latest" "$call_args[8]" "pi should run the pi coding agent package"
-  assert_eq "--model" "$call_args[9]" "pi should forward the first pi CLI argument"
-  assert_eq "sonnet:high" "$call_args[10]" "pi should preserve the pi model argument value"
-  assert_eq "start pi" "$call_args[11]" "pi should preserve message arguments"
+  assert_eq "0" "${#varlock_args[@]}" "pi should not invoke varlock"
+  assert_eq "5" "${#bun_args[@]}" "pi should invoke bun directly"
+  assert_eq "x" "$bun_args[1]" "pi should execute the npm package via bun x"
+  assert_eq "@mariozechner/pi-coding-agent@latest" "$bun_args[2]" "pi should run the pi coding agent package"
+  assert_eq "--model" "$bun_args[3]" "pi should forward the first pi CLI argument"
+  assert_eq "sonnet:high" "$bun_args[4]" "pi should preserve the pi model argument value"
+  assert_eq "start pi" "$bun_args[5]" "pi should preserve message arguments"
 }
 
 test_pi_handles_empty_argument_lists() {
   emulate -L zsh
   source "$HELPER"
   export PI_VARLOCK_CONFIG_DIR=/tmp/pi-varlock/
-  local -a call_args=()
+  local -a bun_args=()
+  local -a varlock_args=()
+  bun() {
+    bun_args=("$@")
+  }
   varlock() {
-    call_args=("$@")
+    varlock_args=("$@")
   }
 
   pi
 
-  assert_eq "8" "${#call_args[@]}" "pi should not add empty arguments when none are provided"
-  assert_eq "@mariozechner/pi-coding-agent@latest" "$call_args[8]" "pi should still invoke the pi package without CLI arguments"
+  assert_eq "0" "${#varlock_args[@]}" "pi should not invoke varlock when no arguments are provided"
+  assert_eq "2" "${#bun_args[@]}" "pi should not add empty arguments when none are provided"
+  assert_eq "x" "$bun_args[1]" "pi should still execute via bun x without CLI arguments"
+  assert_eq "@mariozechner/pi-coding-agent@latest" "$bun_args[2]" "pi should still invoke the pi package without CLI arguments"
+}
+
+test_pi_with_azure_runs_varlock_with_expected_arguments() {
+  emulate -L zsh
+  source "$HELPER"
+  export PI_VARLOCK_CONFIG_DIR=/tmp/pi-varlock/
+  local -a bun_args=()
+  local -a varlock_args=()
+  bun() {
+    bun_args=("$@")
+  }
+  varlock() {
+    varlock_args=("$@")
+  }
+
+  pi-with-azure --model sonnet:high "start pi"
+
+  assert_eq "0" "${#bun_args[@]}" "pi-with-azure should launch through varlock"
+  assert_eq "11" "${#varlock_args[@]}" "pi-with-azure should forward the complete varlock command"
+  assert_eq "run" "$varlock_args[1]" "pi-with-azure should invoke varlock run"
+  assert_eq "--no-redact-stdout" "$varlock_args[2]" "pi-with-azure should preserve TTY behavior"
+  assert_eq "--path" "$varlock_args[3]" "pi-with-azure should pass the varlock config path flag"
+  assert_eq "/tmp/pi-varlock/" "$varlock_args[4]" "pi-with-azure should point varlock at the pi config directory"
+  assert_eq "--" "$varlock_args[5]" "pi-with-azure should separate varlock args from the pi command"
+  assert_eq "bun" "$varlock_args[6]" "pi-with-azure should launch via bun"
+  assert_eq "x" "$varlock_args[7]" "pi-with-azure should execute the npm package via bun x"
+  assert_eq "@mariozechner/pi-coding-agent@latest" "$varlock_args[8]" "pi-with-azure should run the pi coding agent package"
+  assert_eq "--model" "$varlock_args[9]" "pi-with-azure should forward the first pi CLI argument"
+  assert_eq "sonnet:high" "$varlock_args[10]" "pi-with-azure should preserve the pi model argument value"
+  assert_eq "start pi" "$varlock_args[11]" "pi-with-azure should preserve message arguments"
+}
+
+test_pi_with_azure_handles_empty_argument_lists() {
+  emulate -L zsh
+  source "$HELPER"
+  export PI_VARLOCK_CONFIG_DIR=/tmp/pi-varlock/
+  local -a bun_args=()
+  local -a varlock_args=()
+  bun() {
+    bun_args=("$@")
+  }
+  varlock() {
+    varlock_args=("$@")
+  }
+
+  pi-with-azure
+
+  assert_eq "0" "${#bun_args[@]}" "pi-with-azure should not bypass varlock when no arguments are provided"
+  assert_eq "8" "${#varlock_args[@]}" "pi-with-azure should not add empty arguments when none are provided"
+  assert_eq "x" "$varlock_args[7]" "pi-with-azure should still execute via bun x without CLI arguments"
+  assert_eq "@mariozechner/pi-coding-agent@latest" "$varlock_args[8]" "pi-with-azure should still invoke the pi package without CLI arguments"
 }
 
 test_schema_was_moved_out_of_the_public_repo() {

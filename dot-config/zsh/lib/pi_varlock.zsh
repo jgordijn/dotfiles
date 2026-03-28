@@ -1,4 +1,5 @@
-# Launch pi through varlock so secrets come from 1Password at runtime.
+# Launch pi directly by default. Use pi-with-azure when Anthropic Azure
+# credentials should be loaded from 1Password via varlock.
 
 zsh_pi_varlock_repo_config_dir() {
   [[ -n "${DOTFILES:-}" ]] || return 1
@@ -40,8 +41,15 @@ zsh_pi_varlock_config_dir() {
 pi() {
   emulate -L zsh
 
+  bun x @mariozechner/pi-coding-agent@latest "$@"
+}
+
+pi-with-azure() {
+  emulate -L zsh
+
   local config_dir
   config_dir="$(zsh_pi_varlock_config_dir)"
 
   varlock run --no-redact-stdout --path "$config_dir" -- bun x @mariozechner/pi-coding-agent@latest "$@"
 }
+
