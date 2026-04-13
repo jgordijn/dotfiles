@@ -43,18 +43,18 @@ tmux_prefix_binding() {
 }
 
 tmux_window_state() {
-  env -u TMUX tmux -L "$TMUX_SOCKET" display-message -p '#{window_name}|#{allow-rename}|#{automatic-rename}|#{@opencode-title-locked}'
+  env -u TMUX tmux -L "$TMUX_SOCKET" display-message -p '#{window_name}|#{allow-rename}|#{automatic-rename}|#{@pi-title-locked}'
 }
 
 lock_window_title() {
   local title="$1"
   env -u TMUX tmux -L "$TMUX_SOCKET" rename-window "$title"
-  env -u TMUX tmux -L "$TMUX_SOCKET" set-window-option @opencode-title-locked on >/dev/null
+  env -u TMUX tmux -L "$TMUX_SOCKET" set-window-option @pi-title-locked on >/dev/null
   env -u TMUX tmux -L "$TMUX_SOCKET" set-window-option allow-rename off >/dev/null
 }
 
 unlock_window_title() {
-  env -u TMUX tmux -L "$TMUX_SOCKET" set-window-option -u @opencode-title-locked >/dev/null
+  env -u TMUX tmux -L "$TMUX_SOCKET" set-window-option -u @pi-title-locked >/dev/null
   env -u TMUX tmux -L "$TMUX_SOCKET" set-window-option -u allow-rename >/dev/null
 }
 
@@ -70,7 +70,7 @@ assert_window_state() {
   assert_eq "$expected_title" "$title" 'window title should match'
   assert_eq "$expected_allow_rename" "$allow_rename" 'allow-rename should match'
   assert_eq "$expected_automatic_rename" "$automatic_rename" 'automatic-rename should stay disabled'
-  assert_eq "$expected_lock_flag" "$lock_flag" 'opencode title lock flag should match'
+  assert_eq "$expected_lock_flag" "$lock_flag" 'pi title lock flag should match'
 }
 
 test_title_lock_binding_disables_cli_window_renames() {
@@ -78,7 +78,7 @@ test_title_lock_binding_disables_cli_window_renames() {
   start_tmux_server
   {
     local binding="$(tmux_prefix_binding T)"
-    assert_contains "$binding" 'set-window-option @opencode-title-locked on' 'manual title binding should keep the plugin lock'
+    assert_contains "$binding" 'set-window-option @pi-title-locked on' 'manual title binding should keep the pi lock'
     assert_contains "$binding" 'set-window-option allow-rename off' 'manual title binding should block application-driven renames'
   } always {
     stop_tmux_server
@@ -90,7 +90,7 @@ test_title_unlock_binding_reenables_cli_window_renames() {
   start_tmux_server
   {
     local binding="$(tmux_prefix_binding u)"
-    assert_contains "$binding" 'set-window-option -u @opencode-title-locked' 'unlock binding should clear the plugin lock'
+    assert_contains "$binding" 'set-window-option -u @pi-title-locked' 'unlock binding should clear the pi lock'
     assert_contains "$binding" 'set-window-option -u allow-rename' 'unlock binding should restore application-driven renames'
   } always {
     stop_tmux_server
