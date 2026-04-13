@@ -57,6 +57,23 @@ test_assistant_text_and_tool_calls_are_preserved_alongside_thinking() {
   assert_contains "$output" '⚡ read(' "tool calls should still be rendered"
 }
 
+test_assistant_thinking_is_not_truncated() {
+  emulate -L zsh
+  local long_thinking="$(python3 - <<'PY'
+print('A' * 450)
+PY
+)"
+  local json="{\"type\":\"message\",\"message\":{\"role\":\"assistant\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"${long_thinking}\"}]}}"
+  local output="$(render_json "$json")"
+  local expected_full=$'\e[3;38;5;246m💭 '
+  expected_full+="$long_thinking"
+  expected_full+=$'\e[0m'
+
+  assert_contains "$output" "$expected_full" "thinking blocks should include the full thinking text"
+  [[ "$output" != *"…"* ]] || fail "thinking blocks should not add an ellipsis"
+}
+
+
 for test_fn in ${(ok)functions[(I)test_*]}; do
   $test_fn
   print -- "ok $test_fn"

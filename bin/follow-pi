@@ -20,7 +20,7 @@ JQ_FILTER='
       else [.message.content[] |
         if .type == "text" then .text
         elif .type == "toolCall" then "\u001b[33m⚡ " + .name + "(\u001b[0m" + (.arguments | tostring | .[0:200]) + "\u001b[33m)\u001b[0m"
-        elif .type == "thinking" then "\u001b[3;38;5;246m💭 " + (.thinking | .[0:400]) + (if (.thinking | length) > 400 then "…" else "" end) + "\u001b[0m"
+        elif .type == "thinking" then "\u001b[3;38;5;246m💭 " + .thinking + "\u001b[0m"
         else empty end
       ] | join("\n")
       end)
