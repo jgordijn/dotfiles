@@ -1,5 +1,5 @@
 [language-server.kotlin-language-server]
-command = "kotlin-lsp"
+command = "/Users/jgordijn/.local/bin/kotlin-lsp-intellij-server"
 args = ["--stdio"]
 
 
