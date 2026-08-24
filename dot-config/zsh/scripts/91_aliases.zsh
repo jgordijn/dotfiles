@@ -4,6 +4,7 @@ alias oc="opencode upgrade && opencode"
 alias l='eza --all --long --group --group-directories-first --icons --header --time-style=long-iso'
 alias ls='ls --color=auto'
 alias vim='nvim'
+alias lvim='NVIM_APPNAME=lazyvim nvim'
 
 source "$DOTFILES/lib/pi_varlock.zsh"
 
