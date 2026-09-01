@@ -42,11 +42,11 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 
-# make sure the left alt key works as intended
+# Make sure the left Option key works as Alt. Preserve modified-arrow
+# sequences so Herdr can handle Option-Left/Right as tab navigation.
 macos-option-as-alt = left
-#
-#keybind = alt+left=unbind
-#keybind = alt+right=unbind
+keybind = alt+left=csi:1;3D
+keybind = alt+right=csi:1;3C
 
 # keybind = super+n=unbind
 # keybind = super+t=unbind
