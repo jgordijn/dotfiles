@@ -183,6 +183,11 @@ if [ -d $CUSTOM_ZSH_FUNCTIONS ]; then
     unset i
 fi
 
+# Load psqlv completion after the Ahold scripts add psqlv to PATH.
+if command -v psqlv >/dev/null 2>&1; then
+  source <(psqlv --completion zsh)
+fi
+
 # Alt-F is left unbound here so Emacs mode can use it for forward-word.
 
 
